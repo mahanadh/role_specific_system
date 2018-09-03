@@ -1,6 +1,7 @@
 <?php include('functions.php') ?>
 
 
+
 <html>
 <head>
     <title>Registration system PHP and MySQL</title>
