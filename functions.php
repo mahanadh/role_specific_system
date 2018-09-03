@@ -13,7 +13,7 @@ $errors   = array();
 if (isset($_POST['register_btn'])) {
     register();
 }
-
+//
 // REGISTER USER
 function register(){
     // call these variables with the global keyword to make them available in function
@@ -164,3 +164,6 @@ function isAdmin()
         return false;
     }
 }
+
+
+
