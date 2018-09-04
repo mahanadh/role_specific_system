@@ -58,7 +58,11 @@ if (isset($_GET['logout'])) {
                     &nbsp; <a href="create_user.php"> + add user</a>
                 </small>
 
+
             <?php endif ?>
+        </div>
+        <div>
+            <button ><a href="addfood.php"> add food</a></button>
         </div>
     </div>
 </div>
