@@ -48,8 +48,7 @@ if(isset($_POST['add_food']))
     $sql = " insert into food (food_id,food_name,food_quantity,food_price) values ( '$food_id' ,'$food_name' , '$food_quantity','$food_price' ) ";
     $result = mysqli_query ( $con , $sql );
     echo $_SESSION['success'];
-
-
+    header("location: addfood.php");
 }
-header("location: addfood.php");
+
 ?>

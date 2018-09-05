@@ -10,6 +10,10 @@ if (!isLoggedIn()) {
 <head>
     <title>Home</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+
+    <style>
+
+    </style>
 </head>
 <body>
 <div class="header">
@@ -45,5 +49,53 @@ if (!isLoggedIn()) {
         </div>
     </div>
 </div>
+
+<div>
+</div>
+
+<?php
+$con=mysqli_connect("localhost","root","","dss");
+
+$result = mysqli_query($con,"SELECT * FROM food ORDER BY food_id");
+
+$option = '';
+
+
+echo "<table border='1'>
+<tr>
+<th>Food Id</th>
+<th>Food Name</th>
+<th>Food Quantity</th>
+<th>Food Price</th>
+<th>Order</th>
+
+</tr>";
+
+while($row = mysqli_fetch_array($result))
+{
+    echo "<tr>";
+    echo "<td>" . $row['food_id'] . "</td>";
+    echo "<td>" . $row['food_name'] . "</td>";
+    echo "<td>" . $row['food_quantity'] . "</td>";
+    echo "<td>" . $row['food_price'] . "</td>";
+    echo "<td>" . $row['order_food'] . "</td>";
+    echo "</tr>";
+}
+echo "</table>";
+
+echo "
+
+<form method='post' action='index.php'>
+<input type='submit' name='submit'>
+ 
+
+</form>
+
+";
+
+mysqli_close($con);
+?>
 </body>
 </html>
+
+
