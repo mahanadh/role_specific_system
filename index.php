@@ -70,31 +70,59 @@ echo "<table border='1'>
 <th>Order</th>
 
 </tr>";
+?>
+<form method='post' action='index.php'>
+<?php
 
+    if(isset($_POST['food_id'])) {
+        $food_ids = $_POST['food_id'];
+        echo print_r($food_ids);
+        foreach ($food_ids as $food_id) {
+            $orderedQty = (int)$_POST['ordered' . $food_id];
+            $query = "SELECT * FROM food WHERE id ='$food_id'";
+            $updated = mysqli_query($db, $query);
+            $row = mysqli_fetch_array($updated);
+            $updatedFoodQty = $row['food_quantity'] - $orderedQty;
+            $query = "UPDATE food SET food_quantity='$updatedFoodQty' WHERE food_id='$food_id'";
+            mysqli_query($db, $query);
+        }
+    }
 while($row = mysqli_fetch_array($result))
 {
     echo "<tr>";
+    echo "<input name='food_id[]' type='hidden' value='". $row['food_id'] ."'>";
     echo "<td>" . $row['food_id'] . "</td>";
     echo "<td>" . $row['food_name'] . "</td>";
     echo "<td>" . $row['food_quantity'] . "</td>";
     echo "<td>" . $row['food_price'] . "</td>";
-    echo "<td>" . $row['order_food'] . "</td>";
+    echo "<td><input type='number' name='ordered" . $row['food_id'] . "'>" . $row['order_food'] . "</td>";
     echo "</tr>";
 }
 echo "</table>";
 
-echo "
-
-<form method='post' action='index.php'>
+?>
 <input type='submit' name='submit'>
- 
 
-</form>
 
-";
+<?php
+while($row = mysqli_fetch_array($result)) {
+    if (!isset($_POST['submit'])) {
+
+        $conn = new mysqli('localhost', 'root', '', 'dss');
+        $order_food = $row['order_food'];
+        echo $row['order_food'];
+        $query = "UPDATE food SET food_quantity=$order_food ";
+        $results = mysqli_query($db, $query);
+        print $results;
+        header("location", "index.php");
+
+    }
+}
 
 mysqli_close($con);
+
 ?>
+</form>
 </body>
 </html>
 
