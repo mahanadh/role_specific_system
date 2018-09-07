@@ -147,7 +147,6 @@ function login(){
             }else{
                 $_SESSION['user'] = $logged_in_user;
                 $_SESSION['success']  = "You are now logged in";
-
                 header('location: index.php');
             }
         }else {
@@ -165,5 +164,16 @@ function isAdmin()
     }
 }
 
+function current_user(){
+    static $current_user;
+    global $db;
+    if(!$current_user){
+        if(isset($_SESSION['id'])):
+            $id = intval($_SESSION['id']);
+            $current_user = find_by_id('users',id);
+        endif;
+    }
+    return $current_user;
+}
 
 
