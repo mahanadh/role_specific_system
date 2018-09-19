@@ -9,118 +9,132 @@ if (!isLoggedIn()) {
 <html>
 <head>
     <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-
-    <style>
-    </style>
+<!--    <link rel="stylesheet" type="text/css" href="style.css">-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="header">
-    <h2> Home Page</h2>
-</div>
-<div class="content">
-    <!-- notification message -->
-    <?php if (isset($_SESSION['success'])) : ?>
-        <div class="error success" >
-            <h3>
-                <?php
-                echo $_SESSION['success'];
-                unset($_SESSION['success']);
-                ?>
-            </h3>
-        </div>
-    <?php endif ?>
-    <!-- logged in user information -->
-    <div class="profile_info">
-        <img src="images/user_profile.png"  >
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">DSS Canteen Food System </a>
 
-        <div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link disabled" href="index.php?logout='1'" style="color: red;">Logout</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link disabled" href="showorder.php" style="color: #985f0d;">View orders</a>
+            </li>
+        </ul>
+        <span class="navbar-text">
             <?php  if (isset($_SESSION['user'])) : ?>
                 <strong><?php echo $_SESSION['user']['username']; ?></strong>
 
                 <small>
-                    <i  style="color: #888;">(<?php echo ucfirst($_SESSION['user']['user_type']); ?>)</i>
-                    <br>
-                    <a href="index.php?logout='1'" style="color: red;">logout</a>
-                </small>
+<!--                            <i  style="color: #888;">(--><?php //echo ucfirst($_SESSION['user']['user_type']); ?><!--)</i>-->
+                        </small>
 
             <?php endif ?>
+            </span>
+    </div>
+</nav>
+<!-- notification message -->
+<?php if (isset($_SESSION['success'])) : ?>
+    <div class="error success" >
+        <h3>
+            <?php
+            echo $_SESSION['success'];
+            unset($_SESSION['success']);
+            ?>
+        </h3>
+    </div>
+<?php endif ?>
+<?php
+$con=mysqli_connect("localhost","root","","dss");
+$option = '';
+?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <br><br>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <th>S.N.</th>
+                    <th class="col-md-2">Food Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th class="col-md-1">Order</th>
+                </thead>
+                <tbody>
+                    <form method='post' action='index.php'>
+                    <?php
+
+                    if(isset($_POST['food_id'])) {
+                        $food_ids = $_POST['food_id'];
+
+                        foreach ($food_ids as $food_id) {
+
+                            $ordered = $_POST['ordered' . $food_id];
+
+                            if ($ordered > 0) {
+
+                                $query = "SELECT * FROM `food` WHERE food_id ='{$food_id}' ";
+                                $updated = mysqli_query($con, $query);
+
+                                while ($row = mysqli_fetch_array($updated)) {
+                                    $updatedFoodQty = $row['food_quantity'] - $ordered;
+                                }
+
+                                if ($updatedFoodQty < 0) {
+                                    echo "Invalid order!";
+                                } else {
+                                    $query = "UPDATE `food` SET food_quantity = '{$updatedFoodQty}' WHERE food_id = '{$food_id}'";
+                                    mysqli_query($db, $query);
+                                    $orderDate = date("Y-m-d H:i:s", strtotime('today'));
+                                    $user_id = $_SESSION['user_id'];
+                                    $sql = "INSERT INTO order_details (user_id,food_id,ordered_quantity,date, served) values( '$user_id' ,'$food_id' , '$ordered','$orderDate','0') ";
+                                    $result = mysqli_query($con, $sql);
+                                }
+
+                            }
+                        }
+                    }
+
+                    $result = mysqli_query($con,"SELECT * FROM food ORDER BY food_id");
+                    $i = 1;
+                    while($row = mysqli_fetch_array($result))
+                    {
+                        echo "<tr>";
+                        echo "<input name='food_id[]' type='hidden' value='". $row['food_id'] ."'>";
+                        echo "<td>" . $i++ . "</td>";
+                        echo "<td>" . $row['food_name'] . "</td>";
+                        echo "<td>" . $row['food_quantity'] . "</td>";
+                        echo "<td>" . $row['food_price'] . "</td>";
+                        if($row['food_quantity'] < 1) {
+                            echo "<td><input class='form-control form-control-sm' type='number' name='ordered" . $row['food_id'] . "' disabled>" . $row['order_food'] . "</td>";
+                        } else {
+                            echo "<td><input class='form-control form-control-sm' type='number' name='ordered" . $row['food_id'] . "' min = '0' max='".$row['food_quantity']."'>" . $row['order_food'] . "</td>";
+                        }
+                        echo "</tr>";
+                    } ?>
+                        <tr>
+                            <td colspan="4">
+                            </td>
+                            <td >
+                                <input type='submit' name='submit' value="Place Order" class="btn btn-success btn-sm">
+                            </td>
+                        </tr>
+                    </tbody>
+                </form>
+            </table>
         </div>
     </div>
 </div>
 
-<div>
-</div>
 
-<?php
-$con=mysqli_connect("localhost","root","","dss");
-$option = '';
-echo "<table border='1'>
-<tr>
-<th>Food Id</th>
-<th>Food Name</th>
-<th>Food Quantity</th>
-<th>Food Price</th>
-<th>Order</th>
-</tr>";
-?>
-<form method='post' action='index.php'>
-    <?php
-
-        if(isset($_POST['food_id'])) {
-            $food_ids = $_POST['food_id'];
-
-            foreach ($food_ids as $food_id) {
-
-                $ordered = $_POST['ordered' . $food_id];
-
-                if ($ordered > 0) {
-
-                    $query = "SELECT * FROM `food` WHERE food_id ='{$food_id}' ";
-                    $updated = mysqli_query($con, $query);
-
-                    while ($row = mysqli_fetch_array($updated)) {
-                        $updatedFoodQty = $row['food_quantity'] - $ordered;
-                    }
-
-                    $query = "UPDATE `food` SET food_quantity = '{$updatedFoodQty}' WHERE food_id = '{$food_id}'";
-                    mysqli_query($db, $query);
-
-                }
-            }
-        }
-
-    $result = mysqli_query($con,"SELECT * FROM food ORDER BY food_id");
-    while($row = mysqli_fetch_array($result))
-    {
-        echo "<tr>";
-        echo "<input name='food_id[]' type='hidden' value='". $row['food_id'] ."'>";
-        echo "<td>" . $row['food_id'] . "</td>";
-        echo "<td>" . $row['food_name'] . "</td>";
-        echo "<td>" . $row['food_quantity'] . "</td>";
-        echo "<td>" . $row['food_price'] . "</td>";
-        echo "<td><input type='number' name='ordered" . $row['food_id'] . "'>" . $row['order_food'] . "</td>";
-        echo "</tr>";
-    }
-    echo "</table>";
-    ?>
-    <input type='submit' name='submit'>
-
-
-    <?php
-    while($row = mysqli_fetch_array($result)) {
-        if (!isset($_POST['submit'])) {
-            $conn = new mysqli('localhost', 'root', '', 'dss');
-            $order_food = $row['order_food'];
-            echo $row['order_food'];
-            $query = "UPDATE food SET food_quantity=$order_food ";
-            $results = mysqli_query($db, $query);
-            print $results;
-            header("location", "index.php");
-        }
-    }
-    mysqli_close($con);
-    ?>
-</form>
 </body>
 </html>
