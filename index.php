@@ -15,14 +15,18 @@ if (!isLoggedIn()) {
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </head>
 <body>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">DSS Canteen Food System </a>
-
+    <div class="container">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <a class="nav-link disabled" href="index.php?logout='1'" style="color: red;">Logout</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="change_password.php" style="color: red;">Change Password</a>
             </li>
         </ul>
         <ul class="navbar-nav mr-auto">
@@ -41,7 +45,9 @@ if (!isLoggedIn()) {
             <?php endif ?>
             </span>
     </div>
+</div>
 </nav>
+
 <!-- notification message -->
 <?php if (isset($_SESSION['success'])) : ?>
     <div class="error success" >
@@ -111,9 +117,9 @@ $option = '';
                         echo "<tr>";
                         echo "<input name='food_id[]' type='hidden' value='". $row['food_id'] ."'>";
                         echo "<td>" . $i++ . "</td>";
-                        echo "<td>" . $row['food_name'] . "</td>";
-                        echo "<td>" . $row['food_quantity'] . "</td>";
-                        echo "<td>" . $row['food_price'] . "</td>";
+                        echo "<td>" . ucfirst($row['food_name']) . "</td>";
+                        echo "<td>" . ucfirst($row['food_quantity']) . "</td>";
+                        echo "<td>" . ucfirst($row['food_price']) . "</td>";
                         if($row['food_quantity'] < 1) {
                             echo "<td><input class='form-control form-control-sm' type='number' name='ordered" . $row['food_id'] . "' disabled>" . $row['order_food'] . "</td>";
                         } else {

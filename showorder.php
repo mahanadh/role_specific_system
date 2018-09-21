@@ -30,6 +30,9 @@ $con=mysqli_connect("localhost","root","","dss");
                 <li class="nav-item">
                     <a class="nav-link disabled" href="index.php?logout='1'" style="color: red;">Logout</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="index.php" style="color: red;">HOME</a>
+                </li>
             </ul>
             <span class="navbar-text">
             <?php  if (isset($_SESSION['user'])) : ?>

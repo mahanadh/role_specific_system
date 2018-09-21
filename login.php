@@ -33,10 +33,10 @@
                <?php echo display_error();?>
 
                 <div class="wrap-input100 validate-input" data-validate="Enter email">
-                    <input class="input100" type="text" name="username" placeholder="username">
+                    <input class="input100" type="text" name="username" placeholder="username" autofocus required>
                 </div>
                 <div class="wrap-input100 validate-input" data-validate="Enter password">
-                    <input class="input100" type="password" name="password" placeholder="Password">
+                    <input class="input100" type="password" name="password" placeholder="Password" required>
                 </div>
                 <div class="container-login100-form-btn m-t-32">
                     <button class="button" type="submit" name="login_btn">Login</button>

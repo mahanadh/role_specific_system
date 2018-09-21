@@ -5,12 +5,16 @@ include 'dbConnection.php';
 if (isset($_POST["submit"])) {
     $email = $_POST['email'];
     $query = "select * from users where email='$email'";
-    echo $query;
     $result = mysqli_query($connection,$query);
     if($result){
         $row = mysqli_fetch_assoc( $result );
         $name= $row['username'];
-        $random = substr(md5(mt_rand()), 0, 5);
+
+        $random = substr(mt_rand(), 0, 5);
+        $rand_md5 = md5($random);
+        $query = "UPDATE `users` SET `password`='$rand_md5' WHERE `email`='$email'";
+        $result = mysqli_query($connection, $query);
+
         $bodyContent = "Hello " . $name."<br> You have requested to reset password!! <br> Your new password is : ".$random."<br> Regards";
         $mail = new PHPMailer;
         $mail->CharSet = "UTF-8";
@@ -25,7 +29,7 @@ if (isset($_POST["submit"])) {
         $mail->FromName = 'Canteen Management System | DSS';                //Sets the From name of the message
         $mail->AddAddress($email, "$name");        //Adds a "To" address
         $mail->WordWrap = 50;                            //Sets word wrapping on the body of the message to a given number of characters
-        $mail->Hostname = 'localhost.localdomain';       //to send unlimited emails from localhost
+        $mail->Hostname = 'localhost.localdomain';          //to send unlimited emails from localhost
         $mail->IsHTML(true);                            //Sets message type to HTML if you want to send message with html tags
         $mail->Subject = "Forget Password | Canteen Management System";                //Sets the Subject of the message
         $mail->Body = $bodyContent;                //An HTML or plain text message body
@@ -33,17 +37,18 @@ if (isset($_POST["submit"])) {
         {
             echo "<SCRIPT type='text/javascript'>
 			alert('Email Sent!!');
-			window.location.replace('login.php');</SCRIPT>";
+			window.location.replace('login.php');
+            </SCRIPT>";
         } else {
-//            echo "<SCRIPT type='text/javascript'>
-//			alert('Your email could not be sent. Please try again later.');
-//            window.location.replace('forgot_password.php');</SCRIPT>";
-////			header("Refresh:0");
+            echo "<SCRIPT type='text/javascript'>
+			alert('Your email could not be sent. Please try again later.');
+            window.location.replace('forgot_password.php');</SCRIPT>";
+			header("Refresh:0");
         }
     }else{
-//        echo "<SCRIPT type='text/javascript'>
-//			alert('Email not found!!. Please try again with registered email.');
-//            window.location.replace('forgot_password.php');</SCRIPT>";
+        echo "<SCRIPT type='text/javascript'>
+			alert('Email not found!!. Please try again with registered email.');
+            window.location.replace('forgot_password.php');</SCRIPT>";
     }
 
 }
