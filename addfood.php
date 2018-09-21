@@ -60,14 +60,7 @@
     <!-- Horizonatal Form -->
     <div class="row">
         <div class="col-xs-6">
-            <form class="form-horizontal">
-                <div class="form-group">
-                    <label class="col-xs-2">Food Id</label>
-                    <div class="col-xs-10">
-                        <input type="number"  name="food_id" class="form-control"  placeholder="id" />
-                    </div>
-                </div>
-
+            <form class="form-horizontal" method="post">
                 <div class="form-group">
                     <label for="nameField" class="col-xs-2">Food Name</label>
                     <div class="col-xs-10">
@@ -77,7 +70,7 @@
                 <div class="form-group">
                     <label for="" class="col-xs-2">Food Quantity</label>
                     <div class="col-xs-10">
-                        <input type="number" name="food_quantity" class="form-control"  placeholder="food price" />
+                        <input type="number" name="food_quantity" class="form-control"  placeholder="food quantity" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -104,13 +97,14 @@ $db = mysqli_connect('localhost', 'root', '', 'dss');
 if(isset($_POST['add_food']))
 {
 
-    $food_id = $_POST['food_id'];
     $food_name = $_POST['food_name'];
     $food_quantity = $_POST['food_quantity'];
     $food_price=$_POST['food_price'];
+    $added_date = date("Y-m-d H:i:s", strtotime('today'));
     $db_host="localhost";  $db_user="root";  $db_password="";  $db="dss";
     $con = mysqli_connect($db_host,$db_user,$db_password,$db);
-    $sql = " insert into food (food_id,food_name,food_quantity,food_price) values ( '$food_id' ,'$food_name' , '$food_quantity','$food_price' ) ";
+    $sql = " insert into food (food_name,food_quantity,food_price,added_date) values (' $food_name' , '$food_quantity','$food_price','$added_date') ";
+   // echo $sql;
     $result = mysqli_query ( $con , $sql );
     echo $_SESSION['success'];
     header("location: addfood.php");

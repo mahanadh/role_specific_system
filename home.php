@@ -57,12 +57,14 @@ if (isset($_GET['logout'])) {
                     <a href="home.php?logout='1'" style="color: red;">logout</a>
                     &nbsp; <a href="create_user.php"> + add user</a>
                    <button> <a href="adminViewOrders.php" >View today's order</a></button>
+                    <button> <a href="view_user.php">View users</a> </button>
                 </small>
 
 
             <?php endif ?>
         </div>
         <div>
+
             <button ><a href="addfood.php"> add food</a></button>
         </div>
     </div>

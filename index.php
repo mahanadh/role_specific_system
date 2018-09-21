@@ -108,26 +108,29 @@ $option = '';
                     $i = 1;
                     while($row = mysqli_fetch_array($result))
                     {
-                        echo "<tr>";
-                        echo "<input name='food_id[]' type='hidden' value='". $row['food_id'] ."'>";
-                        echo "<td>" . $i++ . "</td>";
-                        echo "<td>" . $row['food_name'] . "</td>";
-                        echo "<td>" . $row['food_quantity'] . "</td>";
-                        echo "<td>" . $row['food_price'] . "</td>";
-                        if($row['food_quantity'] < 1) {
-                            echo "<td><input class='form-control form-control-sm' type='number' name='ordered" . $row['food_id'] . "' disabled>" . $row['order_food'] . "</td>";
-                        } else {
-                            echo "<td><input class='form-control form-control-sm' type='number' name='ordered" . $row['food_id'] . "' min = '0' max='".$row['food_quantity']."'>" . $row['order_food'] . "</td>";
+                        if($row['added_date']==date("Y-m-d H:i:s", strtotime('today'))) {
+                            echo "<tr>";
+                            echo "<input name='food_id[]' type='hidden' value='" . $row['food_id'] . "'>";
+                            echo "<td>" . $i++ . "</td>";
+                            echo "<td>" . $row['food_name'] . "</td>";
+                            echo "<td>" . $row['food_quantity'] . "</td>";
+                            echo "<td>" . $row['food_price'] . "</td>";
+                            if ($row['food_quantity'] < 1) {
+                                echo "<td><input class='form-control form-control-sm' type='number' name='ordered" . $row['food_id'] . "' disabled>" . $row['order_food'] . "</td>";
+                            } else {
+                                echo "<td><input class='form-control form-control-sm' type='number' name='ordered" . $row['food_id'] . "' min = '0' max='" . $row['food_quantity'] . "'>" . $row['order_food'] . "</td>";
+                            }
+                            echo "</tr>";
                         }
-                        echo "</tr>";
-                    } ?>
-                        <tr>
-                            <td colspan="4">
-                            </td>
-                            <td >
-                                <input type='submit' name='submit' value="Place Order" class="btn btn-success btn-sm">
-                            </td>
-                        </tr>
+                                } ?>
+
+                                    <tr>
+                                        <td colspan="4">
+                                        </td>
+                                        <td >
+                                            <input type='submit' name='submit' value="Place Order" class="btn btn-success btn-sm">
+                                        </td>
+                                    </tr>
                     </tbody>
                 </form>
             </table>

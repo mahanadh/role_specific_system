@@ -136,7 +136,7 @@ function login()
 
     // attempt login if no errors on form
     if (count($errors) == 0) {
-       // $password = md5($password);
+       //$password = md5($password);
 
         $query = "SELECT * FROM users WHERE username='$username' AND password='$password' LIMIT 1";
         $results = mysqli_query($db, $query);
