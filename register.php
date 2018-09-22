@@ -7,6 +7,7 @@
     <title>Registration system PHP and MySQL</title>
     <link rel="stylesheet" href="style.css">
     <script src="js/login.js"></script>
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico">
 </head>
 <body onload='document.form1.email.focus()'>
 <div class="header">

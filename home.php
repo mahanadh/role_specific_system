@@ -16,7 +16,9 @@ if (isset($_GET['logout'])) {
 <html>
 <head>
     <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico">
     <style>
         .header {
             background: #003366;
@@ -27,6 +29,9 @@ if (isset($_GET['logout'])) {
     </style>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">DSS Canteen Food System </a>
+</nav>
 <div class="header">
     <h2>Admin - Home Page</h2>
 </div>

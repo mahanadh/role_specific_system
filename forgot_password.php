@@ -8,7 +8,10 @@
 ?>
 
 <html>
-<title><head>Forgot password</head></title>
+<head><title>Forgot password
+</title>
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico">
+</head>
 <body>
 <form action="passwordController.php" method="post">
     Email:
