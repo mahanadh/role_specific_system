@@ -23,6 +23,8 @@ $con=mysqli_connect("localhost","root","","dss");
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a href="#" class="pull-left" ><img src="images/icons/favicon.ico"></a>
+
     <a class="navbar-brand" href="#">DSS Canteen Food System </a>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -30,6 +32,9 @@ $con=mysqli_connect("localhost","root","","dss");
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <a class="nav-link disabled" href="index.php?logout='1'" style="color: red;">Logout</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="home.php" style="color: red;">HOME</a>
             </li>
         </ul>
         <span class="navbar-text">

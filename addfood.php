@@ -8,8 +8,9 @@
     <link rel="icon" type="image/png" href="images/icons/favicon.ico">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </head>
-<body style='margin:30px'>
+<body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a href="#" class="pull-left" ><img src="images/icons/favicon.ico"></a>
     <a class="navbar-brand" href="#">DSS Canteen Food System </a>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">

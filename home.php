@@ -30,7 +30,16 @@ if (isset($_GET['logout'])) {
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a href="#" class="pull-left" ><img src="images/icons/favicon.ico"></a>
     <a class="navbar-brand" href="#">DSS Canteen Food System </a>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link disabled" href="home.php?logout='1'" style="color: red;">Logout</a>
+        </li>
+        <li class="nav-item" >
+        <a class="nav-link disabled" href="change_password.php" style="color: red;">Change Password</a>
+    </li>
+    </ul>
 </nav>
 <div class="header">
     <h2>Admin - Home Page</h2>
@@ -56,22 +65,24 @@ if (isset($_GET['logout'])) {
             <?php  if (isset($_SESSION['user'])) : ?>
                 <strong><?php echo $_SESSION['user']['username']; ?></strong>
 
-                <small>
+
                     <i  style="color: #888;">(<?php echo ucfirst($_SESSION['user']['user_type']); ?>)</i>
                     <br>
-                    <a href="home.php?logout='1'" style="color: red;">logout</a>
-                    &nbsp; <a href="create_user.php"> + add user</a>
-                   <button> <a href="adminViewOrders.php" >View today's order</a></button>
-                    <button> <a href="view_user.php">View users</a> </button>
-                </small>
+            <br><br>
+                    &nbsp;<button> <a href="create_user.php"> + add user</a></button>
+                &nbsp; &nbsp;&nbsp; &nbsp;<button> <a href="adminViewOrders.php" >View today's order</a></button>
+                &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; <button> <a href="view_user.php">View users</a> </button>
+                &nbsp;&nbsp;&nbsp; &nbsp; <button ><a href="addfood.php"> add food</a></button>
+
 
 
             <?php endif ?>
         </div>
-        <div>
 
-            <button ><a href="addfood.php"> add food</a></button>
-        </div>
+
+
+
+
     </div>
 </div>
 </body>

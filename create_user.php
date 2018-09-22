@@ -17,6 +17,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a href="#" class="pull-left" ><img src="images/icons/favicon.ico"></a>
     <a class="navbar-brand" href="#">DSS Canteen Food System </a>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
