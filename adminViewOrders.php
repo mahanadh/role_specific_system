@@ -69,7 +69,7 @@ if(isset($_SESSION['user_type'])) {
     if(isset($_POST['serve'])) {
         $order_id = $_POST['orderId'];
         $sql = "UPDATE order_details SET served = 1 WHERE id = '$order_id' ";
-        mysqli_query($con, $sql);
+        mysqli_query($db, $sql);
     }
 ?>
 
