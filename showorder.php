@@ -14,7 +14,7 @@ $con=mysqli_connect("localhost","root","","dss");
     <!DOCTYPE html>
     <html>
     <head>
-        <title>Home</title>
+        <title>Order History</title>
         <!--    <link rel="stylesheet" type="text/css" href="style.css">-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -30,10 +30,10 @@ $con=mysqli_connect("localhost","root","","dss");
 
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="index.php?logout='1'" style="color: red;">Logout</a>
+                    <a class="btn btn-danger" href="index.php?logout='1'">Logout</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="index.php" style="color: red;">HOME</a>
+                    <a class="nav-link disabled" href="index.php" style="color: green;">HOME</a>
                 </li>
             </ul>
             <span class="navbar-text">

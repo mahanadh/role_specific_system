@@ -1,7 +1,26 @@
 
+<?php
+include('functions.php');
+// if session already started, this loads $_SESSION with existing values:
+// Turn off all error reporting
+error_reporting(0);
+if(isset($_SESSION['user_type'])) {
+    // Code for Logged members
+    if ($_SESSION['user_type'] === "admin") {
+        $_SESSION['msg'] = "loggedin";
+
+
+    }
+    else {
+        $_SESSION['msg'] = "You must log in  as user first";
+        header('location: login.php');
+    }
+}
+
+?>
 <html>
 <head>
-    <title>Add food</title>
+    <title>Add Food</title>
   <!--  <link rel="stylesheet" href="style.css"> -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -17,10 +36,10 @@
 
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link disabled" href="index.php?logout='1'" style="color: red;">Logout</a>
+                <a class="btn btn-danger" href="index.php?logout='1'">Logout</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled" href="home.php" style="color: red;">HOME</a>
+                <a class="nav-link disabled" href="home.php" style="color: green;">HOME</a>
             </li>
         </ul>
         <span class="navbar-text">

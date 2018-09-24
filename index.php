@@ -1,14 +1,27 @@
 <?php
 include('functions.php');
-if (!isLoggedIn()) {
-    $_SESSION['msg'] = "You must log in first";
-    header('location: login.php');
+// if session already started, this loads $_SESSION with existing values:
+// Turn off all error reporting
+error_reporting(0);
+if(isset($_SESSION['user_type'])) {
+    // Code for Logged members
+    if ($_SESSION['user_type'] === "user") {
+        $_SESSION['msg'] = "loggedin";
+
+
+    }
+    else {
+        $_SESSION['msg'] = "You must log in  as user first";
+        header('location: login.php');
+    }
 }
+
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home</title>
+    <title>Order Food</title>
 <!--    <link rel="stylesheet" type="text/css" href="style.css">-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -31,11 +44,11 @@ if (!isLoggedIn()) {
 
 
             <li class="nav-item">
-                <a class="nav-link disabled" href="index.php?logout='1'" style="color: red;">Logout</a>
+                <a class="btn btn-danger" href="home.php?logout='1'">Logout</a>
             </li>
 
             <li class="nav-item" >
-                <a class="nav-link disabled" href="change_password.php" style="color: red;">Change Password</a>
+                <a class="btn btn-warning" href="change_password.php">Change Password</a>
             </li>
         </ul>
         <ul class="navbar-nav mr-auto">
@@ -83,7 +96,7 @@ $option = '';
                     <th class="col-md-1">Order</th>
                 </thead>
                 <tbody>
-                    <form method='post' action='index.php'>
+                    <form  onSubmit="if(!confirm('Are you sure to order?')){return false;}" method='post' action='index.php'>
                     <?php
 
                     if(isset($_POST['food_id'])) {

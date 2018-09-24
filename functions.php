@@ -147,11 +147,13 @@ function login()
             if ($logged_in_user['user_type'] == 'admin') {
 
                 $_SESSION['user'] = $logged_in_user;
+                $_SESSION['user_type']= $logged_in_user['user_type'];
                 $_SESSION['user_id'] = $logged_in_user['id'];
                 $_SESSION['success'] = "You are now logged in";
                 header('location: home.php');
             } else {
                 $_SESSION['user'] = $logged_in_user;
+                $_SESSION['user_type']= $logged_in_user['user_type'];
                 $_SESSION['user_id'] = $logged_in_user['id'];
                 $_SESSION['success'] = "You are now logged in";
                 header('location: index.php');
