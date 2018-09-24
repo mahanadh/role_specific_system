@@ -75,7 +75,7 @@ if(isset($_SESSION['user_type'])) {
 
 <?php
 $sql = "SELECT f.food_name, o.ordered_quantity, o.date, o.id, u.username FROM food as f JOIN order_details AS o ON f.food_id = o.food_id JOIN users AS u ON o.user_id = u.id WHERE o.served = 0";
-$result = mysqli_query($con, $sql);
+$result = mysqli_query($db, $sql);
 ?>
 <div class="container">
     <div class="row">
