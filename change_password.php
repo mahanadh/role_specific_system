@@ -5,7 +5,7 @@ include('functions.php');
 error_reporting(0);
 if(isset($_SESSION['user_type'])) {
     // Code for Logged members
-    if ($_SESSION['user_type'] === "user") {
+    if ($_SESSION['user_type'] === "user" ||$_SESSION['user_type'] === "admin" ) {
         $_SESSION['msg'] = "loggedin";
 
 
@@ -26,6 +26,28 @@ if(isset($_SESSION['user_type'])) {
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <link rel="icon" type="image/png" href="images/icons/favicon.ico">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <style>
+        body{
+            background: #D5F5E3;
+        }
+        .form-horizontal
+        {
+            margin: auto;
+        }
+        .col-md-6
+        {
+            margin: auto;
+        }
+
+        hr {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border: 0;
+            border-top: 1px solid rgba(0, 0, 0, .1);
+            width: 40%;
+        }
+    </style>
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -40,7 +62,7 @@ if(isset($_SESSION['user_type'])) {
 
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link disabled" href="index.php" style="color: green;">HOME</a>
+                <a class="nav-link disabled" href="home.php" style="color: green;">HOME</a>
             </li>
 
         </ul>
@@ -48,8 +70,11 @@ if(isset($_SESSION['user_type'])) {
 
     </div>
 </nav>
+<hr>
 <div class="container">
-    <div class="col-xs-6">
+    <div class="row">
+    <div class="col-md-6">
+
 <form action="change_password.php" method="post"class="form-horizontal">
 
     <div class="form-group">
@@ -72,7 +97,7 @@ if(isset($_SESSION['user_type'])) {
     <div class="form-group">
         <label for="" class="col-xs-2"> New Password:</label>
         <div class="col-xs-10">
-            <input type='password' name='newpassword'><p>
+            <input type='password' name='newpassword' ><p>
         </div>
     </div>
 
@@ -83,10 +108,13 @@ if(isset($_SESSION['user_type'])) {
         </div>
     </div>
     <div class="col-xs-10 col-xs-offset-2">
-        <label class="btn btn-warning" type='submit' name='submit' value='Change password'>Change Password</label>
+        <button class="btn btn-warning" type='submit' name='submit' value='submit'>Change Password</button>
     </div>
 
 </form>
+
+</div>
+    </div>
 </div>
 </body>
 </html>

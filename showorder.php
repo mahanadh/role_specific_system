@@ -20,6 +20,16 @@ $con=mysqli_connect("localhost","root","","dss");
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
         <link rel="icon" type="image/png" href="images/icons/favicon.ico">
+        <style>
+            body{
+                background: #D5F5E3;
+            }
+            table td, table th, table tr{
+                border-bottom: 1px solid black !important;
+                border: 1px solid black !important;
+
+            }
+        </style>
     </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -33,7 +43,7 @@ $con=mysqli_connect("localhost","root","","dss");
                     <a class="btn btn-danger" href="index.php?logout='1'">Logout</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="index.php" style="color: green;">HOME</a>
+                    <a class="btn btn-dark " href="index.php" style="background-color: green" >HOME</a>
                 </li>
             </ul>
             <span class="navbar-text">

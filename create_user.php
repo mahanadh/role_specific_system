@@ -13,6 +13,9 @@
         button[name=register_btn] {
             background: #003366;
         }
+        body{
+            background: #D5F5E3;
+        }
     </style>
 </head>
 <body>

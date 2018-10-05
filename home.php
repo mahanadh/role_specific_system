@@ -21,6 +21,7 @@ if(isset($_SESSION['user_type'])) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico">
     <style>
         .header {
             background: #003366;
@@ -28,6 +29,11 @@ if(isset($_SESSION['user_type'])) {
         button[name=register_btn] {
             background: #003366;
         }
+
+         body{
+             background: #D5F5E3;
+         }
+
     </style>
 </head>
 <body>
@@ -39,7 +45,7 @@ if(isset($_SESSION['user_type'])) {
             <a class="btn btn-danger" href="home.php?logout='1'">Logout</a>
         </li>
         <li class="nav-item" >
-        <a class="nav-link disabled" href="change_password.php" style="color: red;"></a>
+        <a class="nav-link disabled" href="change_password.php" style="color: red;"> Change password</a>
     </li>
     </ul>
     <span class="navbar-text">

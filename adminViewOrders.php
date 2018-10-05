@@ -26,6 +26,20 @@ if(isset($_SESSION['user_type'])) {
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <link rel="icon" type="image/png" href="images/icons/favicon.ico">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <style>
+        body{
+            background: #D5F5E3;
+        }
+        table td, table th, table tr{
+            border-bottom: 1px solid black !important;
+            border: 1px solid black !important;
+
+        }
+        .col-md-8
+        {
+            margin: auto;
+        }
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">

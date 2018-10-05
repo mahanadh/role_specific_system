@@ -27,6 +27,15 @@ if(isset($_SESSION['user_type'])) {
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <link rel="icon" type="image/png" href="images/icons/favicon.ico">
+    <script src="js/login.js"></script>
+    <style>
+        body{
+            background: #D5F5E3;
+        }
+        .col-md-6{
+            margin: auto;
+        }
+    </style>
 </head>
 <body >
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -56,7 +65,7 @@ if(isset($_SESSION['user_type'])) {
     </div>
 </nav>
 <div class="container">
-    <h2>Register</h2>
+    <center> <h2>Register</h2></center>
 </div>
 <!--<form method="post" name="form1" action="register.php" onsubmit="return validate()">-->
 <!--    --><?php //display_error(); ?>
@@ -89,8 +98,8 @@ if(isset($_SESSION['user_type'])) {
 <div class="container">
     <!-- Horizonatal Form -->
     <div class="row">
-        <div class="col-xs-6">
-            <form class="form-horizontal" method="post">
+        <div class="col-md-6">
+            <form class="form-horizontal" action="register.php" method="post" name="form1" onsubmit="return validate()">
                 <div class="form-group">
                     <label for="nameField" class="col-xs-2">User Name</label>
                     <div class="col-xs-10">
@@ -100,13 +109,21 @@ if(isset($_SESSION['user_type'])) {
                 <div class="form-group">
                     <label for="email" class="col-xs-2">Email</label>
                     <div class="col-xs-10">
-                        <input type="email" name="email" class="form-control"  placeholder="email" />
+                        <input type="email" name="email" class="form-control" id = "email" placeholder="email" />
                     </div>
+                </div>
+                <div class="input-group">
+                    <label>User type</label>
+                    <select name="user_type" id="user_type" >
+                        <option value=""></option>
+                        <option value="admin">Admin</option>
+                        <option value="user">User</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="" class="col-xs-2">password</label>
                     <div class="col-xs-10">
-                        <input type="password" name="password_1" class="form-control"  placeholder="password" />
+                        <input type="password" name="password_1" class="form-control" minlength="8" id="pass" placeholder="password" />
                     </div>
                 </div>
                 <div class="form-group">

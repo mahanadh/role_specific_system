@@ -27,14 +27,37 @@ if(isset($_SESSION['user_type'])) {
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <link rel="icon" type="image/png" href="images/icons/favicon.ico">
+    <style>
+        hr {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border: 0;
+            border-top: 1px solid rgba(0, 0, 0, .1);
+            width: 40%;
+        }
+        .col-md-6
+        {
+            margin: auto;
+        }
 
+        table td, table th, table tr{
+            border-bottom: 1px solid black !important;
+            border: 1px solid black !important;
+
+        }
+        body{
+            background: #D5F5E3;
+        }
+
+
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
 
 
-        <a href="#" class="pull-left" ><img src="images/icons/favicon.ico"></a>
+    <a href="#" class="pull-left" ><img src="images/icons/favicon.ico"></a>
 
     <a class="navbar-brand" href="#">DSS Canteen Food System </a>
 
@@ -68,6 +91,8 @@ if(isset($_SESSION['user_type'])) {
             </span>
     </div>
 </nav>
+
+
 <!-- notification message -->
 <?php if (isset($_SESSION['success'])) : ?>
     <div class="error success" >
@@ -83,11 +108,12 @@ if(isset($_SESSION['user_type'])) {
 $con=mysqli_connect("localhost","root","","dss");
 $option = '';
 ?>
+<hr>
 <div class="container">
     <div class="row">
         <div class="col-md-6">
             <br><br>
-            <table class="table table-bordered table-hover">
+            <table class="table table-responsive">
                 <thead>
                     <th>S.N.</th>
                     <th class="col-md-2">Food Item</th>
@@ -95,7 +121,7 @@ $option = '';
                     <th>Price</th>
                     <th class="col-md-1">Order</th>
                 </thead>
-                <tbody>
+                <tbody >
                     <form  onSubmit="if(!confirm('Are you sure to order?')){return false;}" method='post' action='index.php'>
                     <?php
 

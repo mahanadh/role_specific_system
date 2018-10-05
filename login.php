@@ -21,19 +21,26 @@
         {
             background: orangered;
         }
+        #image{
+            height: 150px;
+            width: 160px;
+        }
+        body{
+            background-color: #58D68D;
+        }
     </style>
 </head>
 <body>
 <div class="limiter">
-    <div class="container-login100" style="background-image: url('images/deerwalk.jpg');">
+    <div class="container-login100" >
         <div class="wrap-login100 p-t-30 p-b-50">
-            <span class="login100-form-title p-b-41">Please Login</span>
+            <span class="login100-form-title p-b-41"><img src="images/deerwalk_sifal.png" id="image"/></span>
 
             <form class="login100-form validate-form p-b-33 p-t-5"  action="login.php" method="post">
                <?php echo display_error();?>
 
                 <div class="wrap-input100 validate-input" data-validate="Enter email">
-                    <input class="input100" type="text" name="username" placeholder="username" autofocus required>
+                    <input class="input100" type="text" name="username" placeholder="username" required>
                 </div>
                 <div class="wrap-input100 validate-input" data-validate="Enter password">
                     <input class="input100" type="password" name="password" placeholder="Password" required>
@@ -42,7 +49,7 @@
                     <button class="btn btn-success" type="submit" name="login_btn">Login</button>
                 </div>
                 <div class="container-login100-form-btn m-t-32">
-                    <a href="forgot_password.php">Forgot Password</a>
+                    <a href="forgot_password.php">Change Password</a>
                 </div>
 
             </form>

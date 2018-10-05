@@ -26,6 +26,16 @@ if(isset($_SESSION['user_type'])) {
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <link rel="icon" type="image/png" href="images/icons/favicon.ico">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <style>
+        body{
+            background: #D5F5E3;
+        }
+        .col-md-6
+        {
+            margin: auto;
+        }
+
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -39,7 +49,7 @@ if(isset($_SESSION['user_type'])) {
                 <a class="btn btn-danger" href="index.php?logout='1'">Logout</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled" href="home.php" style="color: green;">HOME</a>
+                <a class="btn btn-danger" href="home.php">HOME</a>
             </li>
         </ul>
         <span class="navbar-text">
@@ -55,7 +65,7 @@ if(isset($_SESSION['user_type'])) {
     </div>
 </nav>
 <div class="container">
-    <h2>Add food</h2>
+    <center>  <h2>Add food</h2></center>
 </div>
 <!--<form method="post" action="addfood.php">-->
 <!--       <div class="input-group">-->
@@ -83,7 +93,7 @@ if(isset($_SESSION['user_type'])) {
 <div class="container">
     <!-- Horizonatal Form -->
     <div class="row">
-        <div class="col-xs-6">
+        <div class="col-md-6">
             <form class="form-horizontal" method="post">
                 <div class="form-group">
                     <label for="nameField" class="col-xs-2">Food Name</label>
